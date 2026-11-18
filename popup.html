@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TextFlow</title>
+  <link rel="stylesheet" href="styles/common.css">
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-logo" title="TextFlow"><img src="icons/logo.svg" alt="TextFlow" width="28" height="28"></div>
+    <h1 class="app-title">TextFlow</h1>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <svg class="icon" id="themeIcon" viewBox="0 0 24 24"></svg>
+    </button>
+    <button class="btn-icon btn-ghost" id="openOptions" title="Open full settings">
+      <svg class="icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <div class="popup-content">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-box">
+        <svg class="icon icon-sm" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" class="input" id="searchInput" placeholder="Search snippets..." autocomplete="off">
+      </div>
+      <button class="btn btn-primary btn-sm" id="toggleAdd" title="Add new snippet">
+        <svg class="icon icon-sm" viewBox="0 0 24 24">
+          <path d="M12 5v14M5 12h14"></path>
+        </svg>
+        Add
+      </button>
+    </div>
+
+    <!-- Quick Add Form -->
+    <div class="quick-add" id="quickAdd">
+      <div class="form-group">
+        <label class="label">Shortcut</label>
+        <input type="text" class="input" id="newShortcut" placeholder="e.g. ;hello" maxlength="30">
+      </div>
+      <div class="form-group">
+        <label class="label">Expansion text</label>
+        <textarea class="textarea" id="newExpansion" placeholder="Text that replaces the shortcut..." rows="3"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="flex:1">
+          <label class="label">Folder</label>
+          <select class="select" id="newFolder"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label">Tags</label>
+        <div class="tag-input" id="newTagInput">
+          <div class="tag-input-selected" id="newTagSelected"></div>
+          <input type="text" class="tag-input-field" id="newTagField" placeholder="Type to add tag..." autocomplete="off">
+          <div class="tag-input-suggestions" id="newTagSuggestions"></div>
+        </div>
+      </div>
+      <div class="quick-add-actions">
+        <button class="btn btn-secondary btn-sm" id="cancelAdd">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="saveAdd">Save Snippet</button>
+      </div>
+    </div>
+
+    <!-- Folder + Tag filters -->
+    <div class="filters-bar">
+      <div class="folder-select-wrap">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" style="color:var(--text-muted)"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <select class="select" id="folderFilter">
+          <option value="all">All folders</option>
+        </select>
+      </div>
+      <select class="select sort-select" id="sortSelect">
+        <option value="updated-desc">Newest</option>
+        <option value="updated-asc">Oldest</option>
+        <option value="shortcut-asc">A–Z</option>
+        <option value="usage-desc">Most used</option>
+      </select>
+      <button class="btn-icon btn-ghost" id="clearFilters" title="Clear all filters">
+        <svg class="icon icon-sm" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m15 9-6 6"></path>
+          <path d="m9 9 6 6"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Tag filter chips -->
+    <div class="tag-filters" id="tagFilters">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Snippet List -->
+    <div class="snippet-list" id="snippetList"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="popup-footer">
+    <span class="stats" id="stats">0 snippets</span>
+    <div class="flex gap-1">
+      <button class="btn btn-ghost btn-sm" id="exportBtn" title="Export / Backup">
+        <svg class="icon icon-sm" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Export
+      </button>
+      <button class="btn btn-ghost btn-sm" id="importBtn" title="Import / Restore">
+        <svg class="icon icon-sm" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        Import
+      </button>
+      <input type="file" id="importFile" accept=".json" class="hidden">
+    </div>
+  </footer>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Edit Snippet</h2>
+        <button class="btn-icon btn-ghost" id="closeModal">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editId">
+        <div class="form-group">
+          <label class="label">Shortcut</label>
+          <input type="text" class="input" id="editShortcut" maxlength="30">
+        </div>
+        <div class="form-group">
+          <label class="label">Expansion text</label>
+          <textarea class="textarea" id="editExpansion" rows="4"></textarea>
+          <p class="text-sm text-muted mt-2">Placeholders: {{date}}, {{time}}, {{datetime}}, {{year}}</p>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="flex:1">
+            <label class="label">Folder</label>
+            <select class="select" id="editFolder"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label">Tags</label>
+          <div class="tag-input" id="editTagInput">
+            <div class="tag-input-selected" id="editTagSelected"></div>
+            <input type="text" class="tag-input-field" id="editTagField" placeholder="Type to add tag..." autocomplete="off">
+            <div class="tag-input-suggestions" id="editTagSuggestions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger btn-sm" id="deleteSnippet">Delete</button>
+        <button class="btn btn-secondary btn-sm" id="cancelEdit">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="saveEdit">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="scripts/storage.js"></script>
+  <script src="scripts/popup.js"></script>
+</body>
+</html>

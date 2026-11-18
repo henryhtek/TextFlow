@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TextFlow – Settings</title>
+  <link rel="stylesheet" href="styles/common.css">
+  <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-logo" title="TextFlow"><img src="icons/logo.svg" alt="TextFlow" width="28" height="28"></div>
+    <h1 class="app-title">TextFlow</h1>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <svg class="icon" id="themeIcon" viewBox="0 0 24 24"></svg>
+    </button>
+  </header>
+
+  <div class="options-layout">
+    <nav class="sidebar">
+      <div class="nav-item active" data-section="snippets">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        Snippets
+      </div>
+      <div class="nav-item" data-section="folders">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        Folders
+      </div>
+      <div class="nav-item" data-section="tags">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
+        Tags
+      </div>
+      <div class="nav-item" data-section="settings">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Settings
+      </div>
+      <div class="nav-item" data-section="backup">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Backup & Sync
+      </div>
+      <div class="nav-item" data-section="formfill">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+        Form Fill
+      </div>
+      <div class="nav-item" data-section="about">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+        About
+      </div>
+    </nav>
+
+    <main class="main">
+      <!-- SNIPPETS -->
+      <section class="section active" id="section-snippets">
+        <div class="section-header">
+          <h2>Manage Snippets</h2>
+          <p>Add, edit, delete, search, filter by folder/tags and sort your expansions.</p>
+        </div>
+        <div class="table-toolbar">
+          <div class="search-box">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+            <input type="text" class="input" id="optSearch" placeholder="Search...">
+          </div>
+          <select class="select" id="optFolderFilter" style="width:auto;min-width:130px">
+            <option value="all">All folders</option>
+          </select>
+          <select class="select" id="optSort" style="width:auto">
+            <option value="updated-desc">Newest</option>
+            <option value="updated-asc">Oldest</option>
+            <option value="shortcut-asc">A–Z</option>
+            <option value="usage-desc">Most used</option>
+          </select>
+          <button class="btn btn-secondary btn-sm" id="optClearFilters" title="Clear all filters">
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m15 9-6 6"></path>
+              <path d="m9 9 6 6"></path>
+            </svg>
+            Clear
+          </button>
+          <button class="btn btn-primary" id="optAddBtn">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+            New Snippet
+          </button>
+        </div>
+        <div class="tag-filters" id="optTagFilters" style="margin-bottom:12px"></div>
+        <table class="snippet-table">
+          <thead>
+            <tr>
+              <th>Shortcut</th>
+              <th>Expansion</th>
+              <th>Folder</th>
+              <th>Tags</th>
+              <th>Uses</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="optTableBody"></tbody>
+        </table>
+      </section>
+
+      <!-- FOLDERS -->
+      <section class="section" id="section-folders">
+        <div class="section-header">
+          <h2>Folders</h2>
+          <p>Organize snippets into folders. Drag-free simple management.</p>
+        </div>
+        <div class="table-toolbar">
+          <input type="text" class="input" id="newFolderName" placeholder="New folder name" style="max-width:220px">
+          <input type="color" id="newFolderColor" value="#2E6F40" title="Color" style="width:42px;height:34px;padding:2px;border-radius:6px;border:1px solid var(--border);cursor:pointer">
+          <button class="btn btn-primary" id="addFolderBtn">Add Folder</button>
+        </div>
+        <div id="foldersList" class="card-list"></div>
+      </section>
+
+      <!-- TAGS -->
+      <section class="section" id="section-tags">
+        <div class="section-header">
+          <h2>Tags</h2>
+          <p>Create and manage tags used across snippets. Renaming or deleting updates all snippets.</p>
+        </div>
+        <div class="table-toolbar">
+          <input type="text" class="input" id="newTagName" placeholder="New tag name" style="max-width:220px">
+          <input type="color" id="newTagColor" value="#64748b" title="Color" style="width:42px;height:34px;padding:2px;border-radius:6px;border:1px solid var(--border);cursor:pointer">
+          <button class="btn btn-primary" id="addTagBtn">Add Tag</button>
+        </div>
+        <div id="tagsList" class="card-list"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="section" id="section-settings">
+        <div class="section-header">
+          <h2>Settings</h2>
+          <p>Customize expansion behavior and appearance.</p>
+        </div>
+        <div class="settings-card">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+            Expansion
+          </h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Trigger key</label>
+              <p>Key that expands the shortcut after typing it</p>
+            </div>
+            <select class="select" id="settingTrigger" style="width:140px">
+              <option value="space">Space</option>
+              <option value="enter">Enter</option>
+              <option value="tab">Tab</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-card">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+            Appearance
+          </h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Theme</label>
+              <p>Light or dark mode</p>
+            </div>
+            <select class="select" id="settingTheme" style="width:140px">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-card">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            Form Auto-fill
+          </h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Enable form field detection</label>
+              <p>Allow detection & fill of common form fields (Ctrl+Shift+F)</p>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="settingFormFill">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+        <p class="copyright-line" id="settingsCopyright">© 2026 HTG · TextFlow v1.3.4</p>
+      </section>
+
+      <!-- BACKUP -->
+      <section class="section" id="section-backup">
+        <div class="section-header">
+          <h2>Backup & Sync</h2>
+          <p>Export/import JSON backups. Toggle Chrome Sync independently.</p>
+        </div>
+        <div class="settings-card">
+          <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Chrome Sync
+          </h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Enable Chrome Sync</label>
+              <p>When on, snippets, folders and tags are synced via your Google account (subject to Chrome sync quota).</p>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="settingSync">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="backup-grid">
+          <div class="backup-card">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <h3>Export Backup</h3>
+            <p>Download a JSON file with all snippets, folders, tags and settings.</p>
+            <button class="btn btn-primary" id="optExport">Export JSON</button>
+          </div>
+          <div class="backup-card">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <h3>Import Backup</h3>
+            <p>Restore from a previously exported TextFlow JSON file.</p>
+            <button class="btn btn-secondary" id="optImport">Choose File</button>
+            <input type="file" id="optImportFile" accept=".json" class="hidden">
+          </div>
+        </div>
+      </section>
+
+      <!-- FORM FILL -->
+      <section class="section" id="section-formfill">
+        <div class="section-header">
+          <h2>Form Auto-Populate</h2>
+          <p>Create profile snippets that TextFlow uses to fill common form fields.</p>
+        </div>
+        <div class="settings-card">
+          <h3>How it works</h3>
+          <p class="text-sm text-muted" style="margin-bottom:12px">
+            Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> on any page with a form. TextFlow detects common fields
+            and fills empty ones from matching snippets.
+          </p>
+          <p class="text-sm text-muted">
+            Recommended shortcuts (or matching tags):
+            <code>;email</code>, <code>;phone</code>, <code>;firstname</code>, <code>;lastname</code>,
+            <code>;fullname</code>, <code>;address</code>, <code>;city</code>, <code>;zip</code>,
+            <code>;company</code>, <code>;title</code>
+          </p>
+        </div>
+        <div class="settings-card">
+          <h3>Placeholders</h3>
+          <ul class="text-sm" style="padding-left:20px;color:var(--text-secondary)">
+            <li><code>{{date}}</code> – current date</li>
+            <li><code>{{time}}</code> – current time</li>
+            <li><code>{{datetime}}</code> – date + time</li>
+            <li><code>{{year}}</code> – current year</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="section-about">
+        <div class="section-header"><h2>About</h2></div>
+        <div class="settings-card">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="app-logo" style="width:40px;height:40px;padding:0;overflow:hidden" title="TextFlow"><img src="icons/logo.svg" alt="TextFlow" width="40" height="40"></div>
+            <div>
+              <h3 style="margin:0">TextFlow</h3>
+              <p class="text-sm text-muted">Version 1.3.4</p>
+            </div>
+          </div>
+          <p class="text-sm" style="margin-top:12px;color:var(--text-secondary)">
+            Modern text expander and form filler for Chrome. Organize with folders and tags,
+            expand shortcuts instantly, and keep everything backed up and optionally synced.
+          </p>
+          <p class="text-sm text-muted mt-3">
+            Manifest V3 · Lucide-style icons · Light & Dark themes
+          </p>
+          <p class="copyright-line">© 2026 HTG · TextFlow v1.3.4</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Shared Snippet Modal -->
+  <div class="modal-overlay" id="optModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="optModalTitle">New Snippet</h2>
+        <button class="btn-icon btn-ghost" id="optCloseModal">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="optEditId">
+        <div class="form-group">
+          <label class="label">Shortcut</label>
+          <input type="text" class="input" id="optShortcut" placeholder="e.g. ;hello" maxlength="30">
+        </div>
+        <div class="form-group">
+          <label class="label">Expansion text</label>
+          <textarea class="textarea" id="optExpansion" rows="4"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="flex:1">
+            <label class="label">Folder</label>
+            <select class="select" id="optFolder"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label">Tags</label>
+          <div class="tag-input" id="optTagInput">
+            <div class="tag-input-selected" id="optTagSelected"></div>
+            <input type="text" class="tag-input-field" id="optTagField" placeholder="Type to add tag..." autocomplete="off">
+            <div class="tag-input-suggestions" id="optTagSuggestions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger btn-sm hidden" id="optDelete">Delete</button>
+        <button class="btn btn-secondary btn-sm" id="optCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="optSave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Folder / Tag edit modal (simple) -->
+  <div class="modal-overlay" id="entityModal">
+    <div class="modal" style="max-width:360px">
+      <div class="modal-header">
+        <h2 id="entityModalTitle">Edit</h2>
+        <button class="btn-icon btn-ghost" id="entityClose">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="entityId">
+        <input type="hidden" id="entityType">
+        <div class="form-group">
+          <label class="label">Name</label>
+          <input type="text" class="input" id="entityName">
+        </div>
+        <div class="form-group">
+          <label class="label">Color</label>
+          <input type="color" id="entityColor" style="width:100%;height:36px;padding:2px;border-radius:6px;border:1px solid var(--border)">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="entityCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="entitySave">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="optToast"></div>
+
+  <script src="scripts/storage.js"></script>
+  <script src="scripts/options.js"></script>
+</body>
+</html>
